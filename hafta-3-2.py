@@ -1,54 +1,44 @@
-import random
+# Kendisine atanan bir listenin frekans tablosunu bulup return eden bir fonksiyon yazınız.
 
-# n elemanlı array oluşturan fonksiyon
-def generate_an_array(n):
-  my_array=[]
-  for i in range(n):
-    s=random.randint(0,100)     # 0 ile 100 arası random sayı oluştur
-    my_array.append(s)          # oluşturalan random sayıyı array e ekle
-  return my_array
+# Çözüm 1.1
+def frekans_bul_1_1(liste):
+  frekans = {} 
+  for i in range(len(liste)):
+    if(liste[i] in frekans):
+      frekans[liste[i]] = frekans[liste[i]] + 1
+    else:
+      frekans[liste[i]]=1
+  return frekans
 
-my_arr_1=generate_an_array(10)
-print(my_arr_1)
+# Çözüm 1.2
+def frekans_bul_1_2(liste):
+  frekans = {} 
+  for i in liste:
+    if(i in frekans):
+      frekans[i] = frekans[i] + 1
+    else:
+      frekans[i]=1
+  return frekans
+
+
+# Çözüm 2
+def frekans_bul_2(liste):
+  frekans = []
+  for i in range(len(liste)):
+    s=False
+    for j in range(len(frekans)):
+      if(liste[i]==frekans[j][0]):
+        frekans[j][1] = frekans[j][1]+1
+        s=True
+    if(s==False):
+      frekans.append([liste[i],1])
+  return frekans
+
+
+liste = [0,1,7,3,8,1,1,4,0,2]
+
+print(frekans_bul_1_1(liste))
 print("\n")
-
-# array elemanlarını iteratif olarak dictionary biçiminde yazdırma
-for i in range(len(my_arr_1)):
-  print(i,":",my_arr_1[i])
+print(frekans_bul_1_2(liste))
 print("\n")
-
-# array elemanlarını iteratif olarak yanyana yazdıran fonksiyon
-def print_an_array(my_arr_1):
-  for item in my_arr_1:
-    print(item, end=" ")
-        
-print_an_array(my_arr_1)
-print("\n")
-
-# array elemanlarını bubble sort ile küçükten büyüğe sıralayan fonksiyon
-def my_bubble_sort(my_array):
-  for i in range(len(my_arr_1)-1,0,-1):
-    for j in range(i):
-      if(my_arr_1[j]>my_arr_1[j+1]):
-        t=my_arr_1[j]
-        my_arr_1[j]=my_arr_1[j+1]
-        my_arr_1[j+1]=t
-
-my_bubble_sort(my_arr_1)
-print_an_array(my_arr_1)
-print("\n")
-
-# array içerisinde parametre ile gönderilen değeri arayan fonksiyon
-def search_an_array(my_array,n):
-  found=False
-  step=0                          # aranan sayının kaç adımda bulduğumuzu tutan değişken
-  for i in range(len(my_array)):
-    if(my_array[i]==n):         # aranan sayının kontrol edildiği yer
-      found=True
-      step=i+1
-  if(found==False):
-    print("not found")
-  else:
-    print("found:",found,"step:",step)
-
-search_an_array(my_arr_1,100)
+print(frekans_bul_2(liste))

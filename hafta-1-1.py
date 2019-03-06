@@ -25,7 +25,7 @@ def print_an_array(my_arr_1):
 print_an_array(my_arr_1)
 print("\n")
 
-# array elemanlarını bubble sort ile küçükten büyüğe sıralayan fonksiyon
+# array elemanlarını bubble sort ile küçükten büyüğe sıralayan fonksiyon 
 def my_bubble_sort(my_array):
   for i in range(len(my_arr_1)-1,0,-1):
     for j in range(i):

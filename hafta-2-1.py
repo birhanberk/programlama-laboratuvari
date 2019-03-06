@@ -1,54 +1,39 @@
-import random
+# array elemanlarını selection sort algoritması ile küçükten büyüğe sıralayan fonksiyon
+def selection_sort(my_array):
+  swap_count=0                          # kaç swap yapıldığını tutan değişken
+  for i in range(len(my_array)-1,0,-1):
+    positionOfMax=0
+    for location in range(0,i+1,1):
+      if(my_array[location]>my_array[positionOfMax]):
+        positionOfMax=location
+    temp=my_array[location]
+    my_array[location]=my_array[positionOfMax]
+    my_array[positionOfMax]=temp
+    swap_count=swap_count+1
+  print("number of exchange :",swap_count)
 
-# n elemanlı array oluşturan fonksiyon
-def generate_an_array(n):
-  my_array=[]
-  for i in range(n):
-    s=random.randint(0,100)     # 0 ile 100 arası random sayı oluştur
-    my_array.append(s)          # oluşturalan random sayıyı array e ekle
-  return my_array
-
-my_arr_1=generate_an_array(10)
-print(my_arr_1)
+my_array=[21,12,13,44,25,2,7,16,14,35]
+selection_sort(my_array)
+print(my_array)
 print("\n")
 
-# array elemanlarını iteratif olarak dictionary biçiminde yazdırma
-for i in range(len(my_arr_1)):
-  print(i,":",my_arr_1[i])
-print("\n")
-
-# array elemanlarını iteratif olarak yanyana yazdıran fonksiyon
-def print_an_array(my_arr_1):
-  for item in my_arr_1:
-    print(item, end=" ")
-        
-print_an_array(my_arr_1)
-print("\n")
-
-# array elemanlarını bubble sort ile küçükten büyüğe sıralayan fonksiyon
-def my_bubble_sort(my_array):
-  for i in range(len(my_arr_1)-1,0,-1):
-    for j in range(i):
-      if(my_arr_1[j]>my_arr_1[j+1]):
-        t=my_arr_1[j]
-        my_arr_1[j]=my_arr_1[j+1]
-        my_arr_1[j+1]=t
-
-my_bubble_sort(my_arr_1)
-print_an_array(my_arr_1)
-print("\n")
-
-# array içerisinde parametre ile gönderilen değeri arayan fonksiyon
-def search_an_array(my_array,n):
+# array içerisinde parametre ile gönderilen değeri binary search algoritması ile arayan fonksiyon
+def binary_search(my_array,item):
+  first=0                               # array in ilk elemanı
+  last=len(my_array)-1                  # array in son elemanı
   found=False
-  step=0                          # aranan sayının kaç adımda bulduğumuzu tutan değişken
-  for i in range(len(my_array)):
-    if(my_array[i]==n):         # aranan sayının kontrol edildiği yer
+  step=0                                # aranan sayının kaç adımda bulduğumuzu tutan değişken
+  while first<=last and not found:
+    midpoint=(first+last)//2
+    #print("first - last",first,last)
+    step=step+1
+    if(my_array[midpoint]==item):
       found=True
-      step=i+1
-  if(found==False):
-    print("not found")
-  else:
-    print("found:",found,"step:",step)
+    else:
+      if(item<my_array[midpoint]):
+        last=midpoint-1
+      else:
+        first=midpoint+1
+  return found,midpoint,step
 
-search_an_array(my_arr_1,100)
+print(binary_search(my_array,25))

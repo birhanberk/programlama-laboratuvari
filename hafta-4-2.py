@@ -1,54 +1,77 @@
-import random
+# 3x3 lük bir matrisin m nin satır ve n inci sütununu silen fonksiyon
+def delete_row_col_from_matrix(matrix,m,n):
+  result=[]
+  size_1=len(matrix)                        #satır sayısı
+  size_2=len(matrix[0])                     #sütun sayısı
+  for i in range(size_1):
+    if(i==m):
+      continue
+    row_1=[]
+    for j in range(size_2):
+      if(j==n):
+        continue
+      row_1.append(matrix[i][j])
+    result.append(row_1)
+  return result
 
-# n elemanlı array oluşturan fonksiyon
-def generate_an_array(n):
-  my_array=[]
-  for i in range(n):
-    s=random.randint(0,100)     # 0 ile 100 arası random sayı oluştur
-    my_array.append(s)          # oluşturalan random sayıyı array e ekle
-  return my_array
+# 2x2 lik bir matrisin determinantını bulan fonksiyon
+def matrix_det_2x2(matrix):
+  s_1=matrix[0][0]*matrix[1][1]
+  s_2=matrix[0][1]*matrix[1][0]
+  return(s_1-s_2)
 
-my_arr_1=generate_an_array(10)
-print(my_arr_1)
-print("\n")
+# 3x3 lük bir matrisin determinantını bulan fonksiyon
+def matrix_det_3x3(matrix):
+  a_1=matrix[0][0]
+  a_2=delete_row_col_from_matrix(matrix,0,0)
+  a_3=matrix_det_2x2(a_2)
+  a_4=a_1*a_3
+   
+  b_1=matrix[0][1]                            #-1
+  b_2=delete_row_col_from_matrix(matrix,0,1)
+  b_3=matrix_det_2x2(b_2)
+  b_4=b_1*b_3
 
-# array elemanlarını iteratif olarak dictionary biçiminde yazdırma
-for i in range(len(my_arr_1)):
-  print(i,":",my_arr_1[i])
-print("\n")
+  c_1=matrix[0][2]
+  c_2=delete_row_col_from_matrix(matrix,0,2)
+  c_3=matrix_det_2x2(c_2)
+  c_4=c_1*c_3
 
-# array elemanlarını iteratif olarak yanyana yazdıran fonksiyon
-def print_an_array(my_arr_1):
-  for item in my_arr_1:
-    print(item, end=" ")
-        
-print_an_array(my_arr_1)
-print("\n")
+  return a_4-b_4+c_4
 
-# array elemanlarını bubble sort ile küçükten büyüğe sıralayan fonksiyon
-def my_bubble_sort(my_array):
-  for i in range(len(my_arr_1)-1,0,-1):
-    for j in range(i):
-      if(my_arr_1[j]>my_arr_1[j+1]):
-        t=my_arr_1[j]
-        my_arr_1[j]=my_arr_1[j+1]
-        my_arr_1[j+1]=t
+# 4x4 lük bir matrisin determinantını bulan fonksiyon
+def matrix_det_4x4(matrix):
+  a_1=matrix[0][0]
+  a_2=delete_row_col_from_matrix(matrix,0,0)
+  a_3=matrix_det_3x3(a_2)
+  a_4=a_1*a_3
+   
+  b_1=matrix[0][1]                            #-1
+  b_2=delete_row_col_from_matrix(matrix,0,1)
+  b_3=matrix_det_3x3(b_2)
+  b_4=b_1*b_3
 
-my_bubble_sort(my_arr_1)
-print_an_array(my_arr_1)
-print("\n")
+  c_1=matrix[0][2]
+  c_2=delete_row_col_from_matrix(matrix,0,2)
+  c_3=matrix_det_3x3(c_2)
+  c_4=c_1*c_3
 
-# array içerisinde parametre ile gönderilen değeri arayan fonksiyon
-def search_an_array(my_array,n):
-  found=False
-  step=0                          # aranan sayının kaç adımda bulduğumuzu tutan değişken
-  for i in range(len(my_array)):
-    if(my_array[i]==n):         # aranan sayının kontrol edildiği yer
-      found=True
-      step=i+1
-  if(found==False):
-    print("not found")
-  else:
-    print("found:",found,"step:",step)
+  d_1=matrix[0][3]                            #-1
+  d_2=delete_row_col_from_matrix(matrix,0,3)
+  d_3=matrix_det_3x3(d_2)
+  d_4=d_1*d_3
 
-search_an_array(my_arr_1,100)
+  return a_4-b_4+c_4-d_4
+
+matrix_1=[[1,2],[3,4]]
+matrix_2=[[1,2,3],[4,5,6],[7,8,9]]
+matrix_3=[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+
+sonuc=matrix_det_2x2(matrix_1)
+print(sonuc)
+
+sonuc=matrix_det_3x3(matrix_2)
+print(sonuc)
+
+sonuc=matrix_det_4x4(matrix_3)
+print(sonuc)

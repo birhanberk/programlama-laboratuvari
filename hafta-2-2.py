@@ -1,54 +1,58 @@
-import random
+# n inci fibonacci sayısını döndüren fonksiyon
+def fibonacci(n):
+  a=0
+  b=1
+  for i in range(n-1):
+    a=b
+    b=a+b
+  return a
 
-# n elemanlı array oluşturan fonksiyon
-def generate_an_array(n):
-  my_array=[]
-  for i in range(n):
-    s=random.randint(0,100)     # 0 ile 100 arası random sayı oluştur
-    my_array.append(s)          # oluşturalan random sayıyı array e ekle
-  return my_array
-
-my_arr_1=generate_an_array(10)
-print(my_arr_1)
-print("\n")
-
-# array elemanlarını iteratif olarak dictionary biçiminde yazdırma
-for i in range(len(my_arr_1)):
-  print(i,":",my_arr_1[i])
-print("\n")
-
-# array elemanlarını iteratif olarak yanyana yazdıran fonksiyon
-def print_an_array(my_arr_1):
-  for item in my_arr_1:
-    print(item, end=" ")
-        
-print_an_array(my_arr_1)
-print("\n")
-
-# array elemanlarını bubble sort ile küçükten büyüğe sıralayan fonksiyon
-def my_bubble_sort(my_array):
-  for i in range(len(my_arr_1)-1,0,-1):
-    for j in range(i):
-      if(my_arr_1[j]>my_arr_1[j+1]):
-        t=my_arr_1[j]
-        my_arr_1[j]=my_arr_1[j+1]
-        my_arr_1[j+1]=t
-
-my_bubble_sort(my_arr_1)
-print_an_array(my_arr_1)
-print("\n")
-
-# array içerisinde parametre ile gönderilen değeri arayan fonksiyon
-def search_an_array(my_array,n):
-  found=False
-  step=0                          # aranan sayının kaç adımda bulduğumuzu tutan değişken
-  for i in range(len(my_array)):
-    if(my_array[i]==n):         # aranan sayının kontrol edildiği yer
-      found=True
-      step=i+1
-  if(found==False):
-    print("not found")
+# n inci fibonacci sayısını recursive döndüren fonksiyon
+def recursive_fibonacci(n):
+  if(n<2):
+    return n
   else:
-    print("found:",found,"step:",step)
+    return recursive_fibonacci(n-1)+recursive_fibonacci(n-2)
 
-search_an_array(my_arr_1,100)
+# n sayısının faktoriyelini döndüren fonksiyon
+def factorial(n):
+  s=1
+  for i in range(1,n+1):
+    s=s*i
+  return s
+
+# n sayısının faktoriyelini recursive döndüren fonksiyon
+def recursive_factorial(n):
+  if(n==1):
+    return n
+  else:
+    return n*recursive_factorial(n-1)
+
+# m nin n inci kuvvetini döndüren fonksiyon
+def power(m,n):
+  s=m
+  pow_sayac=0
+  for i in range(1,n):
+    pow_sayac=pow_sayac+1
+    s=s*m
+  return s
+
+# m nin n inci kuvvetini recursive döndüren fonksiyon
+def recursive_power(m,n):
+  rec_pow_sayac=0
+  rec_pow_sayac=rec_pow_sayac+1
+  if(n==0):
+    return 1
+  elif(n==1):
+    return m
+  elif(n%2==0):
+    return recursive_power(m*m,int(n/2))
+  elif(n%2!=0):
+    return recursive_power(m*m,int(n/2))*m
+
+print("\nfibonacci = ",fibonacci(5),"\n")
+print("recursive_fibonacci = ",recursive_fibonacci(5),"\n")
+print("factorial = ",factorial(5),"\n")
+print("recursive_factorial = ",recursive_factorial(5),"\n")
+print("Power = ",power(5,3),"\n")
+print("recursive_Power = ",recursive_power(5,3),"\n")

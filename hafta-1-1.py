@@ -38,7 +38,7 @@ my_bubble_sort(my_arr_1)
 print_an_array(my_arr_1)
 print("\n")
 
-# array içerisinde parametre ile gönderilen değeri arayan fonksiyon
+# array içerisinde parametre ile gönderilen değeri arayan fonksiyon 
 def search_an_array(my_array,n):
   found=False
   step=0                          # aranan sayının kaç adımda bulduğumuzu tutan değişken

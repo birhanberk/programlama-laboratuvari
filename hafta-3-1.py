@@ -1,54 +1,48 @@
-import random
+# vektörel iç çarpım
+def vector_inner_product(v,w):
+  size=len(v)
+  result=[]
+  for i in range(size):
+    result.append(0)
+  for i in range(size):
+    result[i]=v[i]*w[i]
+  t=0
+  for i in range(size):
+    t=t+result[i]
+  return t
 
-# n elemanlı array oluşturan fonksiyon
-def generate_an_array(n):
-  my_array=[]
-  for i in range(n):
-    s=random.randint(0,100)     # 0 ile 100 arası random sayı oluştur
-    my_array.append(s)          # oluşturalan random sayıyı array e ekle
-  return my_array
+# skaler çarpım
+def vector_scalar_product(alpha,v):
+  size=len(v)
+  result=[]
+  for i in range(size):
+    result.append(0)
+  for i in range(size):
+    result[i]=alpha*v[i]
+  return result
 
-my_arr_1=generate_an_array(10)
-print(my_arr_1)
-print("\n")
+# vektörlerin çıkarılması
+def vector_substraction(v,w):
+  size=len(v)
+  result=[]
+  for i in range(size):
+    result.append(0)
+  for i in range(size):
+     result[i]=v[i]-w[i]
+  return result
 
-# array elemanlarını iteratif olarak dictionary biçiminde yazdırma
-for i in range(len(my_arr_1)):
-  print(i,":",my_arr_1[i])
-print("\n")
+def vector_addition(v,w):
+  size=len(v)
+  result=[]
+  for i in range(size):
+    result.append(0)
+  for i in range(size):
+    result[i]=v[i]+w[i]
+  return result
 
-# array elemanlarını iteratif olarak yanyana yazdıran fonksiyon
-def print_an_array(my_arr_1):
-  for item in my_arr_1:
-    print(item, end=" ")
-        
-print_an_array(my_arr_1)
-print("\n")
-
-# array elemanlarını bubble sort ile küçükten büyüğe sıralayan fonksiyon
-def my_bubble_sort(my_array):
-  for i in range(len(my_arr_1)-1,0,-1):
-    for j in range(i):
-      if(my_arr_1[j]>my_arr_1[j+1]):
-        t=my_arr_1[j]
-        my_arr_1[j]=my_arr_1[j+1]
-        my_arr_1[j+1]=t
-
-my_bubble_sort(my_arr_1)
-print_an_array(my_arr_1)
-print("\n")
-
-# array içerisinde parametre ile gönderilen değeri arayan fonksiyon
-def search_an_array(my_array,n):
-  found=False
-  step=0                          # aranan sayının kaç adımda bulduğumuzu tutan değişken
-  for i in range(len(my_array)):
-    if(my_array[i]==n):         # aranan sayının kontrol edildiği yer
-      found=True
-      step=i+1
-  if(found==False):
-    print("not found")
-  else:
-    print("found:",found,"step:",step)
-
-search_an_array(my_arr_1,100)
+v=[3,4,5]
+w=[2,0,1]
+print(vector_inner_product(v,w))
+print(vector_scalar_product(5,v))
+print(vector_substraction(v,w))
+print(vector_addition(v,w))

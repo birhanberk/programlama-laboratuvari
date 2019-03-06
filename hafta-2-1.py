@@ -17,7 +17,7 @@ selection_sort(my_array)
 print(my_array)
 print("\n")
 
-# array içerisinde parametre ile gönderilen değeri binary search algoritması ile arayan fonksiyon
+# array içerisinde parametre ile gönderilen değeri binary search algoritması ile arayan fonksiyon 
 def binary_search(my_array,item):
   first=0                               # array in ilk elemanı
   last=len(my_array)-1                  # array in son elemanı
